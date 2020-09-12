@@ -9,8 +9,8 @@ jobs:
       postgres:
         image: postgres:12
         env:
-          POSTGRES_USER: myapp
-          POSTGRES_DB: myapp_test
+          POSTGRES_USER: rail_github_actions
+          POSTGRES_DB: rail_github_actions_test
           POSTGRES_PASSWORD: ""
         ports: ["5432:5432"]
 
@@ -18,12 +18,14 @@ jobs:
       # ref:https://github.com/actions/checkout
       - name: Checkout code
         uses: actions/checkout@v2
-      # ref:https://github.com/actions/setup-ruby
+
+        # ref:https://github.com/actions/setup-ruby
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
-      # ref:https://github.com/actions/cache/blob/main/examples.md#ruby---bundler
+
+        # ref:https://github.com/actions/cache/blob/main/examples.md#ruby---bundler
       - name: Ruby Bundler
         uses: actions/cache@v2
         with:
@@ -31,14 +33,17 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
+
       - name: Bundle install
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
+
       # https://github.com/actions/cache/blob/main/examples.md#node---yarn
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
+
       - uses: actions/cache@v2
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
@@ -46,12 +51,18 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
       - name: yarn install
         run: yarn install
-      - name: set database.yml
-        run: cp -v config/database.ci.yml config/database.yml
-      - name: db create
-        run: bundle exec rails db:create db:schema:load --trace
+
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: rails_github_actions
+        run: |
+          cp config/database.ci.yml config/database.yml
+          rake db:create db:migrate
       # - name: run rspec
       #   run: bundle exec rspec
       # - name: Archive rspec result screenshots
