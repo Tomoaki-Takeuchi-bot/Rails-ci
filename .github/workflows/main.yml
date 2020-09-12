@@ -25,7 +25,7 @@ jobs:
           ruby-version: 2.6
       # ref:https://github.com/actions/cache/blob/main/examples.md#ruby---bundler
       - name: Ruby Bundler
-      - uses: actions/cache@v2
+        uses: actions/cache@v2
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
