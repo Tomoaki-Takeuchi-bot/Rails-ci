@@ -18,11 +18,11 @@ jobs:
       # ref:https://github.com/actions/checkout
       - name: Checkout code
         uses: actions/checkout@v2
-      # # ref:https://github.com/actions/setup-ruby
-      # - name: Setup Ruby
-      #   uses: ruby/setup-ruby@v1
-      #   with:
-      #     ruby-version: 2.6
+      # ref:https://github.com/actions/setup-ruby
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
       # # ref:https://github.com/actions/cache/blob/main/examples.md#ruby---bundler
       # - name: Ruby Bundler
       # - uses: actions/cache@v2
