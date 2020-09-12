@@ -56,14 +56,12 @@ jobs:
         run: yarn install
 
       - name: Setup test database
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: rails_github_actions
         run: |
           cp config/database.ci.yml config/database.yml
           bundle exec rake db:create
           bundle exec rake db:schema:load
+        env:
+          RAILS_ENV: test
       # - name: run rspec
       #   run: bundle exec rspec
       # - name: Archive rspec result screenshots
