@@ -62,7 +62,8 @@ jobs:
           PGUSER: rails_github_actions
         run: |
           cp config/database.ci.yml config/database.yml
-          rake db:create db:migrate
+          rails db:create
+          rails db:migrate
       # - name: run rspec
       #   run: bundle exec rspec
       # - name: Archive rspec result screenshots
