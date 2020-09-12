@@ -9,10 +9,16 @@ jobs:
       postgres:
         image: postgres:12
         env:
-          POSTGRES_USER: rails_github_actions
-          POSTGRES_DB: rails_github_actions_test
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
           POSTGRES_PASSWORD: ""
-        ports: ["5432:5432"]
+        ports:
+          - 5432/tcp
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       # ref:https://github.com/actions/checkout
@@ -54,15 +60,14 @@ jobs:
 
       - name: yarn install
         run: yarn install
-
-      - name: Setup test database
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: rails_github_actions
-        run: |
-          cp config/database.ci.yml config/database.yml
-          bundle exec rake db:create db:schema:load --trace
+      # - name: Setup test database
+      #   env:
+      #     RAILS_ENV: test
+      #     PGHOST: localhost
+      #     PGUSER: rails_github_actions
+      #   run: |
+      #     cp config/database.ci.yml config/database.yml
+      #     bundle exec rake db:create db:schema:load --trace
       # - name: run rspec
       #   run: bundle exec rspec
       # - name: Archive rspec result screenshots
