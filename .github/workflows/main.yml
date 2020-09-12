@@ -46,12 +46,12 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      # - name: yarn install
-      #   run: yarn install
-      # - name: set database.yml
-      #   run: cp -v config/database.ci.yml config/database.yml
-      # - name: db create
-      #   run: bundle exec rails db:create db:schema:load --trace
+      - name: yarn install
+        run: yarn install
+      - name: set database.yml
+        run: cp -v config/database.ci.yml config/database.yml
+      - name: db create
+        run: bundle exec rails db:create db:schema:load --trace
       # - name: run rspec
       #   run: bundle exec rspec
       # - name: Archive rspec result screenshots
