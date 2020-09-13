@@ -40,6 +40,9 @@ jobs:
       - name: yarn install
         run: yarn install
 
+      - name: rbprettier install
+        run: yarn add --dev prettier @prettier/plugin-ruby
+
         # yarnのキャッシュ
         # ref:https://github.com/actions/cache/blob/main/examples.md#node---yarn
       - uses: actions/cache@v2
