@@ -13,7 +13,8 @@ jobs:
       # ref:https://github.com/actions/setup-ruby
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
-        with: ruby-version:2.6
+        with:
+          ruby-version: 2.6
 
       # ref:https://github.com/actions/cache/blob/main/examples.md#ruby---bundler
       - name: Ruby Bundler
