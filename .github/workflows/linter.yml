@@ -54,4 +54,4 @@ jobs:
         # rubocopは 処理速度向上の為、parallelを使用
         #（Use available CPUs to execute inspection in）
         run: |
-          bin/rubocop --parallel
+          bundle exec rubocop --parallel
