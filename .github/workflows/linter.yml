@@ -40,8 +40,8 @@ jobs:
       - name: yarn install
         run: yarn install
 
-      # - name: rbprettier install
-      #   run: yarn add --dev prettier @prettier/plugin-ruby
+      - name: rbprettier install
+        run: yarn add --dev prettier @prettier/plugin-ruby
 
       # yarnのキャッシュ
       # ref:https://github.com/actions/cache/blob/main/examples.md#node---yarn
@@ -59,3 +59,4 @@ jobs:
         # prettierはnodeで対応
         run: |
           bundle exec rubocop --parallel
+          ./node_modules/.bin/prettier --write '**/*.rb'
