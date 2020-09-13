@@ -16,6 +16,12 @@ jobs:
         # ヘルスチェック項目
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
+      selenium:
+        image: selenium/standalone-chrome
+        ports:
+          - "4444:4444"
+        shm_size: "2gb"
+
     steps:
       # ref:https://github.com/actions/checkout
       - name: Checkout code
@@ -26,13 +32,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
-
-      # - name: Install chrome
-      #   run: |
-      #     wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-      #     echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
-      #     apt update -y
-      #     apt install -y google-chrome-stable
 
       # ref:https://github.com/actions/cache/blob/main/examples.md#ruby---bundler
       - name: Ruby Bundler
