@@ -59,10 +59,10 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: rails_github_actions
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         run: |
-          cp config/database.ci.yml config/database.yml
+          cp config/database.yml.github-actions config/database.yml
           bundle exec rake db:create db:schema:load --trace
       # - name: run rspec
       #   run: bundle exec rspec
