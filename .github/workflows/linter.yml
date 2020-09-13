@@ -40,11 +40,11 @@ jobs:
       - name: yarn install
         run: yarn install
 
-      - name: rbprettier install
-        run: yarn add --dev prettier @prettier/plugin-ruby
+      # - name: rbprettier install
+      #   run: yarn add --dev prettier @prettier/plugin-ruby
 
-        # yarnのキャッシュ
-        # ref:https://github.com/actions/cache/blob/main/examples.md#node---yarn
+      # yarnのキャッシュ
+      # ref:https://github.com/actions/cache/blob/main/examples.md#node---yarn
       - uses: actions/cache@v2
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
@@ -58,5 +58,4 @@ jobs:
         #（Use available CPUs to execute inspection in）
         # prettierはnodeで対応
         run: |
-          ./node_modules/.bin/prettier --write '**/*.rb'
           bundle exec rubocop --parallel
