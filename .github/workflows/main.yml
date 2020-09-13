@@ -64,11 +64,11 @@ jobs:
         run: |
           cp config/database.yml.github-actions config/database.yml
           bundle exec rake db:create db:schema:load --trace
-      # - name: run rspec
-      #   run: bundle exec rspec
-      # - name: Archive rspec result screenshots
-      #   if: failure()
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: rspec result screenshots
-      #     path: tmp/screenshots/
+      - name: run rspec
+        run: bundle exec rspec
+      - name: Archive rspec result screenshots
+        if: failure()
+        uses: actions/upload-artifact@v1
+        with:
+          name: rspec result screenshots
+          path: tmp/screenshots/
