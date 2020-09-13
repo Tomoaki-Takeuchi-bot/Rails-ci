@@ -59,4 +59,3 @@ jobs:
         # prettierはnodeで対応
         run: |
           bundle exec rubocop --parallel
-          ./node_modules/.bin/prettier --write '**/*.rb'
