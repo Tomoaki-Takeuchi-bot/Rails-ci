@@ -54,4 +54,5 @@ jobs:
         # rubocopは 処理速度向上の為、parallelを使用
         #（Use available CPUs to execute inspection in）
         run: |
+          bundle exec rbprettier --write '**/*.rb'
           bundle exec rubocop --parallel
