@@ -40,9 +40,6 @@ jobs:
       - name: yarn install
         run: yarn install
 
-      - name: rbprettier install
-        run: yarn add --dev prettier @prettier/plugin-ruby
-
       # yarnのキャッシュ
       # ref:https://github.com/actions/cache/blob/main/examples.md#node---yarn
       - uses: actions/cache@v2
@@ -56,6 +53,5 @@ jobs:
       - name: Run linters
         # rubocopは 処理速度向上の為、parallelを使用
         #（Use available CPUs to execute inspection in）
-        # prettierはnodeで対応
         run: |
           bundle exec rubocop --parallel
