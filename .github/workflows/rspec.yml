@@ -27,7 +27,14 @@ jobs:
         with:
           ruby-version: 2.6
 
-        # ref:https://github.com/actions/cache/blob/main/examples.md#ruby---bundler
+      - name: Install chrome
+        run: |
+        wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+        echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
+        apt update -y
+        apt install -y google-chrome-stable
+
+      # ref:https://github.com/actions/cache/blob/main/examples.md#ruby---bundler
       - name: Ruby Bundler
         uses: actions/cache@v2
         with:
