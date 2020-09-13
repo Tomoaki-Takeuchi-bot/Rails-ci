@@ -73,3 +73,8 @@ jobs:
         with:
           name: rspec result screenshots
           path: tmp/screenshots/
+
+      - name: security check
+        run: |
+          bin/bundler-audit --update
+          bin/brakeman -q -w2

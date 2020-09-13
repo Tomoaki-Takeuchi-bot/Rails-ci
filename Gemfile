@@ -86,6 +86,10 @@ group :development do
   gem 'better_errors'
   # Railsエラー高度機能使用
   gem 'binding_of_caller'
+  # gem脆弱性診断
+  gem 'bundler-audit'
+  # セキュリティ診断
+  gem 'brakeman'
 end
 
 group :test do
