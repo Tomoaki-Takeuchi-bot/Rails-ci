@@ -89,5 +89,5 @@ jobs:
       # セキュリティレベルw2 ref:https://github.com/presidentbeef/brakeman#confidence-levels
       - name: security check
         run: |
-          bin/bundler-audit --update
-          bin/brakeman -q -w2
+          bundler-audit --update
+          brakeman -q -w2
