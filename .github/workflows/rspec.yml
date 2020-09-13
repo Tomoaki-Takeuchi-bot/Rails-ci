@@ -64,6 +64,7 @@ jobs:
         run: |
           cp config/database.yml.github-actions config/database.yml
           bundle exec rake db:create db:schema:load --trace
+
       - name: run rspec
         run: bundle exec rspec
       - name: Archive rspec result screenshots
