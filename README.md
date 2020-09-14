@@ -1,24 +1,18 @@
-# README
+## GitHub Actions の設定について
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### ファイル
 
-Things you may want to cover:
+- linter.yml rubocop による linter check
+- rspec.yml rspec による test (selenium のインストールとテスト)
+- database.yml.github-actions (config にて)
 
-* Ruby version
+### 追加 Gem
 
-* System dependencies
+- gem 脆弱性診断
+  `gem 'bundler-audit'`
+- セキュリティ診断
+  `gem 'brakeman'`
 
-* Configuration
+### gitignore 追加
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+.local/share/ruby-advisory-db
