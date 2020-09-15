@@ -1,4 +1,4 @@
-name: Rails RSpec
+name: Rails RSpec and security
 on: [push, pull_request]
 
 jobs:
@@ -94,5 +94,5 @@ jobs:
       # セキュリティレベルw2 ref:https://github.com/presidentbeef/brakeman#confidence-levels
       - name: security check
         run: |
-          bundle exec bundler-audit update
+          bundle-audit check --update
           bundle exec brakeman -q -w2
